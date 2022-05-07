@@ -96,7 +96,7 @@ public class CubeGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateCube(_position);
+        CreateCube(Vector3.zero);
     }
 
     private void CreateCube(Vector3 offset)
