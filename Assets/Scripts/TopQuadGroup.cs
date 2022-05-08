@@ -15,14 +15,12 @@ public class TopQuadGroup
     private Vector3 _originInWorld;
     private int _stepsLeft;
     private int _stepsRight;
-    //private int _stepsUp;
-    //private int _stepsDown;
     private int _stepsFront;
     private int _stepsBack;
     private Dictionary<Vector3, QuadData> _quadsToCombine;
 
     public int Lenght => _stepsBack + _stepsFront + 1;
-    public int Heith => _stepsLeft + _stepsRight + 1;
+    public int Height => _stepsLeft + _stepsRight + 1;
     
 
     public int CanExpandBack(int[,,] grid)
@@ -38,7 +36,7 @@ public class TopQuadGroup
                 return 0;
             }
         }
-        return (Lenght + 1) * Heith;
+        return (Lenght + 1) * Height;
     }
 
     public void ExpandBack(int[,,] grid, Dictionary<Vector3, QuadData> quadDictionary, List<KeyValuePair<Vector3, QuadData>> slice)
@@ -70,24 +68,17 @@ public class TopQuadGroup
                 return 0;
             }
         }
-        return (Lenght + 1) * Heith;
+        return (Lenght + 1) * Height;
     }
     public void ExpandFront(int[,,] grid, Dictionary<Vector3, QuadData> quads, List<KeyValuePair<Vector3, QuadData>> slice)
     {
         for (int i = _origin.x - _stepsLeft; i <= _origin.x + _stepsRight; i++)
         {
-            //string str = $"{_origin} {_stepsFront + 1} {grid[i, _origin.y + _stepsFront + 1, _origin.z]}\n";
-            //foreach (var pair in slice)
-            //{
-            //    str += $"{pair.Key}\n";
-            //}
-            //Debug.Log(str);
             var positionInGrid = new Vector3(i, _origin.y + _stepsFront + 1, _origin.z);
             grid[i, _origin.y + _stepsFront + 1, _origin.z] = 0;
             var quadToAdd = quads[positionInGrid];
             _quadsToCombine.Add(quadToAdd.Position, quadToAdd);
             quads.Remove(positionInGrid);
-            
             var quadInSlice = slice.First(p => p.Key == positionInGrid);
             slice.Remove(quadInSlice);
         }
@@ -107,7 +98,7 @@ public class TopQuadGroup
                 return 0;
             }
         }
-        return Lenght * (Heith+1);
+        return Lenght * (Height+1);
     }
 
     public void ExpandLeft(int[,,] grid, Dictionary<Vector3, QuadData> quadDictionary, List<KeyValuePair<Vector3, QuadData>> slice)
@@ -138,7 +129,7 @@ public class TopQuadGroup
                 return 0;
             }
         }
-        return Lenght * (Heith + 1);
+        return Lenght * (Height + 1);
     }
     public void ExpandRight(int[,,] grid, Dictionary<Vector3, QuadData> quads, List<KeyValuePair<Vector3, QuadData>> slice)
     {
