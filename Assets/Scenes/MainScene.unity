@@ -220,7 +220,7 @@ MonoBehaviour:
   _quadGeneratorPrefab: {fileID: 6997556871487721535, guid: 98c1991b25b5b7843b58e3dd3528544b, type: 3}
   _terrainHeight: 10
   _chunkSize: 32
-  _offset: {x: -324, y: 234}
+  _offset: {x: 0, y: 0}
 --- !u!4 &723803408
 Transform:
   m_ObjectHideFlags: 0
@@ -354,13 +354,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.809}
+  m_LocalRotation: {x: 0.5517478, y: 0.021828568, z: -0.014448011, w: 0.83360016}
+  m_LocalPosition: {x: 13, y: 35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 67, y: 3, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
