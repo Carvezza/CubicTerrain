@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169946250}
   m_LocalRotation: {x: 0.26858556, y: 0.17460217, z: -0.01794806, w: 0.94712925}
-  m_LocalPosition: {x: 5.42, y: 11.37, z: -7.83}
+  m_LocalPosition: {x: 7, y: 22, z: -1.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -218,7 +218,7 @@ MonoBehaviour:
   - {fileID: 169946251}
   _cubeGeneratorPrefab: {fileID: 5008447653319459597, guid: d0f831fada914504aaac68fd3b57e801, type: 3}
   _quadGeneratorPrefab: {fileID: 6997556871487721535, guid: 98c1991b25b5b7843b58e3dd3528544b, type: 3}
-  _terrainHeight: 10
+  _terrainHeight: 32
   _chunkSize: 32
   _offset: {x: 0, y: 0}
 --- !u!4 &723803408

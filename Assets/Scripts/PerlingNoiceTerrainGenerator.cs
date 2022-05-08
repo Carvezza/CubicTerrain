@@ -49,13 +49,12 @@ public class PerlingNoiceTerrainGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Generate();
-        RemoveExcessCubes();
-        RemoveExcessQuads();
-        MergeQuads();
-        //DisplayMergedQuads();
-        BakeQuads();
-        //StartCoroutine(StepByStepDisplay());
+        //Generate();
+        //RemoveExcessCubes();
+        //RemoveExcessQuads();
+        //MergeQuads();
+        //BakeQuads();
+        StartCoroutine(StepByStepDisplay());
     }
 
     private void Generate()
@@ -480,13 +479,6 @@ public class PerlingNoiceTerrainGenerator : MonoBehaviour
                 continue;
             }
             var slice = luTop[z].ToList();
-            //string str = $"Slice of {z}\n";
-            //foreach (var pair in slice)
-            //{
-            //    str += $"{pair.Key}\n";
-            //}
-            //Debug.Log(str);
-
             while (slice.Count > 0)
             {
                 var current = slice[0];
