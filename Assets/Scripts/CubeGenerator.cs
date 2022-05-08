@@ -5,7 +5,7 @@ public class CubeGenerator : MonoBehaviour
 {
     [SerializeField]
     private Vector3 _position;
-    private Vector3[] vertices =
+    private Vector3[] _vertices =
         {
             //forward
             new Vector3 (-0.5f, -0.5f, -0.5f),
@@ -38,7 +38,7 @@ public class CubeGenerator : MonoBehaviour
             new Vector3 (0.5f, -0.5f, 0.5f),
             new Vector3 (0.5f, -0.5f, -0.5f),
         };
-    private int[] triangles =
+    private int[] _triangles =
         { 
             //forward
             0,1,2,
@@ -59,7 +59,7 @@ public class CubeGenerator : MonoBehaviour
             20,22,21,
             20,23,22
         };
-    private Vector3[] normals =
+    private Vector3[] _normals =
         {
             //forward
             new Vector3(0, 0, -1),
@@ -93,17 +93,34 @@ public class CubeGenerator : MonoBehaviour
             new Vector3(0, -1, 0),
         };
 
-    // Start is called before the first frame update
-    void Start()
+    public void Generate(CubeData cubeData)
     {
-        CreateCube(Vector3.zero);
+        CreateQuadedCube(cubeData);
     }
 
-    private void CreateCube(Vector3 offset)
+    private void CreateQuadedCube(CubeData cubeData)
     {
-        for (int i = 0; i < vertices.Length; i++)
+        int offset = 0;
+        Vector3[] vertices = new Vector3[24];
+        int[] triangles = new int[36];
+        Vector3[] normals = new Vector3[24];
+        for (int i = 0; i < 6; i++)
         {
-            vertices[i] += offset;
+            var quadData = cubeData.GetQuad((QuadPosition)i);
+            if (quadData.Visible == false)
+            {
+                offset++;
+                continue;
+            }
+            for (int j = 0; j < 4; j++)
+            {
+                vertices[(i - offset) * 4 + j] = quadData.Points[j];
+                normals[(i - offset) * 4+ j] = quadData.Normal;
+            }
+            for (int k = 0; k < 6; k++)
+            {
+                triangles[(i - offset) * 6 + k] = quadData.Triangles[k] + (i - offset) * 4;
+            }
         }
         Mesh mesh = GetComponent<MeshFilter>().mesh;
         mesh.Clear();
