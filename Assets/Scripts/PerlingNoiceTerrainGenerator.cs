@@ -49,12 +49,13 @@ public class PerlingNoiceTerrainGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Generate();
-        //RemoveExcessCubes();
-        //RemoveExcessQuads();
-        //MergeQuads();
-        //BakeQuads();
-        StartCoroutine(StepByStepDisplay());
+        Generate();
+        RemoveExcessCubes();
+        RemoveExcessQuads();
+        MergeQuads();
+        //DisplayMergedQuads();
+        BakeQuads();
+        //StartCoroutine(StepByStepDisplay());
     }
 
     private void Generate()
@@ -479,6 +480,13 @@ public class PerlingNoiceTerrainGenerator : MonoBehaviour
                 continue;
             }
             var slice = luTop[z].ToList();
+            //string str = $"Slice of {z}\n";
+            //foreach (var pair in slice)
+            //{
+            //    str += $"{pair.Key}\n";
+            //}
+            //Debug.Log(str);
+
             while (slice.Count > 0)
             {
                 var current = slice[0];
@@ -494,16 +502,12 @@ public class PerlingNoiceTerrainGenerator : MonoBehaviour
                     int sqrRight = quadGroup.CanExpandRight(_topQuadGrid);
                     int sqrLeft = quadGroup.CanExpandLeft(_topQuadGrid);
 
-                    //Debug.Log($"{current.Key} {sqrBack} {sqrFront} {sqrLeft} {sqrRight}");
-
                     if (sqrBack == 0 && sqrFront == 0 && sqrRight == 0 && sqrLeft == 0)
                     {
                         // Nowhere to expand
                         canExpand = false;
                         continue;
                     }
-
-
                     if (sqrRight >= sqrBack && sqrRight >= sqrFront && sqrRight >= sqrLeft)
                     {
                         quadGroup.ExpandRight(_topQuadGrid, _topQuads, slice);
@@ -524,15 +528,10 @@ public class PerlingNoiceTerrainGenerator : MonoBehaviour
                         quadGroup.ExpandFront(_topQuadGrid, _topQuads, slice);
                         continue;
                     }
-
-
-
-
                 }
                 // QuadGroup ready
                 _quadsToBake.Add(quadGroup.CombineQuads());
             }
-
         }
     }
 
